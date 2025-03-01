@@ -39,9 +39,9 @@
             parallelizable = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "746853872B0CAE9900E48DFE"
-               BuildableName = "NifflerTests.xctest"
-               BlueprintName = "NifflerTests"
+               BlueprintIdentifier = "74D55B762BE12B9600AEF67D"
+               BuildableName = "NifflerUITests.xctest"
+               BlueprintName = "NifflerUITests"
                ReferencedContainer = "container:Niffler.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -50,9 +50,9 @@
             parallelizable = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "74D55B762BE12B9600AEF67D"
-               BuildableName = "NifflerUITests.xctest"
-               BlueprintName = "NifflerUITests"
+               BlueprintIdentifier = "DA2205F52D7304A0009BF4C7"
+               BuildableName = "NifflerAppUITests.xctest"
+               BlueprintName = "NifflerAppUITests"
                ReferencedContainer = "container:Niffler.xcodeproj">
             </BuildableReference>
          </TestableReference>

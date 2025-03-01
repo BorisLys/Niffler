@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum LoginViewIDs: String {
+public enum LoginViewIDs: String {
     case logInText = "logInText"
     case usernameText = "usernameText"
     case userNameTextField = "userNameTextField"
@@ -15,12 +15,12 @@ enum LoginViewIDs: String {
     case loginButton = "loginButton"
 }
 
-enum SpendsViewIDs: String {
+public enum SpendsViewIDs: String {
     case spendsList = "spendsList"
     case addSpendButton = "addSpendButton"
 }
 
-enum SignUpViewIDs: String {
+public enum SignUpViewIDs: String {
     case userNameTextField = "userNameTextField"
     case passwordTextField = "passwordTextField"
     case confirmPasswordTextField = "confirmPasswordTextField"

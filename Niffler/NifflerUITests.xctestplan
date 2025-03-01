@@ -1,0 +1,25 @@
+{
+  "configurations" : [
+    {
+      "id" : "78D1670D-1CEA-4190-98FE-9A8CD13B06E0",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+
+  },
+  "testTargets" : [
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:Niffler.xcodeproj",
+        "identifier" : "74D55B762BE12B9600AEF67D",
+        "name" : "NifflerUITests"
+      }
+    }
+  ],
+  "version" : 1
+}

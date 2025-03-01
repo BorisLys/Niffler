@@ -1,6 +1,25 @@
 import XCTest
+import Niffler
 
-class LoginPage: BasePage {
+final class LoginPage: BasePage {
+    
+    typealias IDs = LoginViewIDs
+    
+    // вычисляется один раз при первом доступе и затем хранит ссылку.
+    private lazy var logInText2 = app.staticTexts[IDs.logInText.rawValue]
+    
+    // computed property — вычисляется каждый раз при обращении.
+    private var logInText: XCUIElement {
+        app.staticTexts[IDs.logInText.rawValue]
+    }
+    
+    private var userNameTextField: XCUIElement {
+        app.textFields[IDs.userNameTextField.rawValue]
+    }
+    
+    private var passwordTextFiel: XCUIElement {
+        app.textFields[IDs.passwordTextField.rawValue]
+    }
     
     @discardableResult
     func input(login: String, password: String) -> Self {
