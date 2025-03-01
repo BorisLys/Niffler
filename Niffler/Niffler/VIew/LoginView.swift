@@ -28,10 +28,12 @@ extension LoginView {
                 VStack {
                     Text("Log in")
                         .font(Font.custom("YoungSerif-Regular", size: 48))
+                        .accessibilityIdentifier(LoginViewIDs.logInText.rawValue)
                 }
 
                 VStack(alignment: .leading) {
                     Text("Username")
+                        .accessibilityIdentifier(LoginViewIDs.usernameText.rawValue)
                     TextField("Type your username", text: $username)
                         .padding()
                         .background(Color(UIColor.systemGray6))

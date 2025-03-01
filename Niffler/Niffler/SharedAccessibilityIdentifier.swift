@@ -8,6 +8,8 @@
 import Foundation
 
 enum LoginViewIDs: String {
+    case logInText = "logInText"
+    case usernameText = "usernameText"
     case userNameTextField = "userNameTextField"
     case passwordTextField = "passwordTextField"
     case loginButton = "loginButton"
