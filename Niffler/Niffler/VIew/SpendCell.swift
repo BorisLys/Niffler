@@ -10,16 +10,19 @@ struct SpendCell: View {
             }
             .toggleStyle(CheckboxToggleStyle())
             .padding()
+            .accessibilityIdentifier(SpendCellIDs.toggle.rawValue)
 
             VStack(alignment: .leading, spacing: 4) {
                 Text("\(spend.description)")
                     .font(.system(size: 16))
                     .foregroundStyle(.primary)
+                    .accessibilityIdentifier(SpendCellIDs.spendDescriptionText.rawValue)
 
                 Text("\(spend.category.name)")
                     .font(.caption)
                     .font(.system(size: 16))
                     .foregroundStyle(Color.primary.secondary)
+                    .accessibilityIdentifier(SpendCellIDs.spendCategoryNameText.rawValue)
             }
 
             VStack {
@@ -27,6 +30,7 @@ struct SpendCell: View {
                     Spacer()
                     Text(spend.amountStringForUI)
                         .foregroundStyle(.primary)
+                        .accessibilityIdentifier(SpendCellIDs.spendAmountText.rawValue)
                 }
 
                 HStack {
@@ -35,6 +39,7 @@ struct SpendCell: View {
                         .font(.caption)
                         .font(.system(size: 16))
                         .foregroundStyle(Color.primary.secondary)
+                        .accessibilityIdentifier(SpendCellIDs.spendDateDescriptionText.rawValue)
                 }
             }
             .frame(maxWidth: .infinity, alignment: .trailing)

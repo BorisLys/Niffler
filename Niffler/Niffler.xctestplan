@@ -17,19 +17,10 @@
   },
   "testTargets" : [
     {
-      "parallelizable" : true,
       "target" : {
         "containerPath" : "container:Niffler.xcodeproj",
-        "identifier" : "746853872B0CAE9900E48DFE",
-        "name" : "NifflerTests"
-      }
-    },
-    {
-      "parallelizable" : true,
-      "target" : {
-        "containerPath" : "container:Niffler.xcodeproj",
-        "identifier" : "746853912B0CAE9900E48DFE",
-        "name" : "NifflerUITests"
+        "identifier" : "DA2205F52D7304A0009BF4C7",
+        "name" : "NifflerAppUITests"
       }
     },
     {

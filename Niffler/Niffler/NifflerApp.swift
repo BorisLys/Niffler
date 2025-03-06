@@ -29,8 +29,12 @@ struct NifflerApp: App {
             UIView.setAnimationsEnabled(false)
             UIApplication.shared.keyWindow?.layer.speed = 100
         }
+        if !ProcessInfo.processInfo.environment.isEmpty {
+            print(ProcessInfo.processInfo.environment["host"] ?? "")
+        }
     }
 }
+
 
 extension NifflerApp {
     var body: some Scene {

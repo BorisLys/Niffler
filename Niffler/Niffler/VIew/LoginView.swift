@@ -71,7 +71,7 @@ extension LoginView {
                     Text(errorText)
                         .font(.caption2)
                         .foregroundStyle(.red)
-                        .accessibilityIdentifier("LoginError")
+                        .accessibilityIdentifier(LoginViewIDs.loginError.rawValue)
                 }
 
                 Divider()

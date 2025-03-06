@@ -1,14 +1,12 @@
 import XCTest
-import Niffler
+import NifflerApp
 
-final class LoginPage: BasePage {
+final class LoginPage: BasePage, NavigationBar {
     
     typealias IDs = LoginViewIDs
     
-    // вычисляется один раз при первом доступе и затем хранит ссылку.
-    private lazy var logInText2 = app.staticTexts[IDs.logInText.rawValue]
+    // MARK: - Locators
     
-    // computed property — вычисляется каждый раз при обращении.
     private var logInText: XCUIElement {
         app.staticTexts[IDs.logInText.rawValue]
     }
@@ -17,65 +15,78 @@ final class LoginPage: BasePage {
         app.textFields[IDs.userNameTextField.rawValue]
     }
     
-    private var passwordTextFiel: XCUIElement {
-        app.textFields[IDs.passwordTextField.rawValue]
+    private var passwordTextField: XCUIElement {
+        app.secureTextFields[IDs.passwordTextField.rawValue]
     }
     
+    private var loginButton: XCUIElement {
+        app.buttons[IDs.loginButton.rawValue]
+    }
+    
+    private var loginErrorText: XCUIElement {
+        app.staticTexts[IDs.loginError.rawValue]
+    }
+    
+    // MARK: - Action
+    
     @discardableResult
-    func input(login: String, password: String) -> Self {
-        XCTContext.runActivity(named: "Авторизуюсь \(login), \(password)") { _ in
-            input(login: login)
-            input(password: password)
-            pressLoginButton()
+    func inputLogin(_ login: String) -> Self {
+        XCTContext.runActivity(named: "Вводим логин \(login)") { _ in
+            userNameTextField.tapElement()
+            userNameTextField.typeText(login)
         }
         return self
     }
     
-    private func input(login: String) {
-        XCTContext.runActivity(named: "Ввожу логин \(login)") { _ in
-            app.textFields["userNameTextField"].tap()
-            app.textFields["userNameTextField"].tap() // TODO: Remove the cause of double tap
-            app.textFields["userNameTextField"].typeText(login)
-        }
-    }
-    
-    private func input(password: String) {
-        XCTContext.runActivity(named: "Ввожу пароль \(password)") { _ in
-            app.secureTextFields["passwordTextField"].tap()
-            app.secureTextFields["passwordTextField"].typeText(password)
-        }
-    }
-    
-    private func pressLoginButton() {
-        XCTContext.runActivity(named: "Жму кнопку логина") { _ in
-            app.buttons["loginButton"].tap()
-        }
-    }
-    
-    func assertIsLoginErrorShown(file: StaticString = #filePath, line: UInt = #line) {
-        XCTContext.runActivity(named: "Жду сообщение с ошибкой") { _ in
-            let isFound = app.staticTexts["LoginError"]
-                .waitForExistence(timeout: 5)
+    @discardableResult
+    func inputPassword(_ password: String) -> Self {
+        XCTContext.runActivity(named: "Вводим пароль \(password)") { activity in
+            passwordTextField.tapElement()
+            passwordTextField.typeText(password)
             
-            XCTAssertTrue(isFound,
-                          "Не нашли сообщение о неправильном логине",
-                          file: file, line: line)
+            // Добавляем в отчет скриншот элемента
+            let image = passwordTextField.screenshot()
+            let attachment = XCTAttachment(screenshot: image)
+            activity.add(attachment)
         }
+
+        return self
     }
     
-    func assertNoErrorShown(file: StaticString = #filePath, line: UInt = #line) {
-        XCTContext.runActivity(named: "Жду сообщение с ошибкой") { _ in
-            let errorLabel =
-             app.staticTexts[
-                "LoginError"
-                //"Нет такого пользователя. Попробуйте другие данные"
-            ]
-                
-            let isFound = errorLabel.waitForExistence(timeout: 5)
+    @discardableResult
+    func tapLoginButton() -> Self {
+        XCTContext.runActivity(named: "Нажимае кнопку логин") { activity in
+            loginButton.tapElement()
+            let jsonObject: [String: Any] = [
+                 "status": "success",
+                 "message": "Test completed",
+                 "data": [
+                     "id": 123,
+                     "name": "Test User"
+                 ]
+             ]
             
-            XCTAssertFalse(isFound,
-                           "Появилась ошибка: \(errorLabel.label)",
-                          file: file, line: line)
+            guard let jsonData = try? JSONSerialization.data(withJSONObject: jsonObject, options: .prettyPrinted) else {
+                XCTFail("Не удалось создать JSON")
+                return
+            }
+            
+            let attachment = XCTAttachment(data: jsonData, uniformTypeIdentifier: "public.json")
+            attachment.name = "TestResult.json"
+            attachment.lifetime = .keepAlways // Храним даже при успешном тесте
+            
+            activity.add(attachment)
         }
+        return self
+    }
+    
+    // MARK: - Verify
+    
+    @discardableResult
+    func verifyLoginError(_ text: String) -> Self {
+        XCTContext.runActivity(named: "Проверяем текст ошибки: \(text)") { activity in
+            loginErrorText.verifyLabel(equal: text)
+        }
+        return self
     }
 }

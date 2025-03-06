@@ -14,6 +14,7 @@ extension StatisticView {
                 Text("Statistics")
                     .font(Font.custom("YoungSerif-Regular", size: 24))
                     .padding()
+                    .accessibilityIdentifier(StatisticViewIDs.statisticText.rawValue)
                 Spacer()
             }
 

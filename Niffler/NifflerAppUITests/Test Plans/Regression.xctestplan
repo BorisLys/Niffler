@@ -1,0 +1,29 @@
+{
+  "configurations" : [
+    {
+      "id" : "B986FDA9-4165-4ECF-A83C-0CB5AFB1A4FD",
+      "name" : "Configuration 1",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "defaultTestExecutionTimeAllowance" : 60,
+    "testTimeoutsEnabled" : true,
+    "uiTestingScreenshotsLifetime" : "keepNever"
+  },
+  "testTargets" : [
+    {
+      "skippedTests" : [
+        "BaseTest"
+      ],
+      "target" : {
+        "containerPath" : "container:Niffler.xcodeproj",
+        "identifier" : "DA2205F52D7304A0009BF4C7",
+        "name" : "NifflerAppUITests"
+      }
+    }
+  ],
+  "version" : 1
+}

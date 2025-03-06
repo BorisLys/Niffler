@@ -13,6 +13,7 @@ public enum LoginViewIDs: String {
     case userNameTextField = "userNameTextField"
     case passwordTextField = "passwordTextField"
     case loginButton = "loginButton"
+    case loginError = "loginError"
 }
 
 public enum SpendsViewIDs: String {
@@ -20,9 +21,22 @@ public enum SpendsViewIDs: String {
     case addSpendButton = "addSpendButton"
 }
 
+public enum StatisticViewIDs: String {
+    case statisticText = "statisticText"
+    
+}
+
 public enum SignUpViewIDs: String {
     case userNameTextField = "userNameTextField"
     case passwordTextField = "passwordTextField"
     case confirmPasswordTextField = "confirmPasswordTextField"
     case signUpButton = "signUpButton"
+}
+
+public enum SpendCellIDs: String {
+    case toggle = "toggle"
+    case spendDescriptionText = "spendDescriptionText"
+    case spendCategoryNameText = "spendCategortNameText"
+    case spendAmountText = "spendAmountText"
+    case spendDateDescriptionText = "spendDateDescriptionText"
 }
